@@ -1,4 +1,4 @@
-import {Table, Model, Column, CreatedAt, UpdatedAt, DataType, HasMany} from 'sequelize-typescript';
+import {Table, Model, Column, CreatedAt, UpdatedAt, HasMany} from 'sequelize-typescript';
 import {Optional} from 'sequelize';
 import { Product } from './product';
 
