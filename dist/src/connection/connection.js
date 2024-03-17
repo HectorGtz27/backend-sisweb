@@ -12,13 +12,16 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const sequelize_typescript_1 = require("sequelize-typescript");
 const product_1 = require("../models/product");
 const category_1 = require("../models/category");
+const orderproduct_1 = require("../models/orderproduct");
+const order_1 = require("../models/order");
 const connection = new sequelize_typescript_1.Sequelize({
     database: 'sisweb_db',
     dialect: 'postgres',
     username: 'sisweb_user',
     password: 'HDK#$%Ljkwerff.89',
     storage: ':memory:',
-    models: [product_1.Product, category_1.Category]
+    schema: 'public',
+    models: [product_1.Product, category_1.Category, order_1.Order, orderproduct_1.OrderProduct]
 });
 function connectionDB() {
     return __awaiter(this, void 0, void 0, function* () {

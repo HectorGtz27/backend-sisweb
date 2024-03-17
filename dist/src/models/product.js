@@ -12,10 +12,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
 const sequelize_typescript_1 = require("sequelize-typescript");
 const category_1 = require("./category");
+const orderproduct_1 = require("./orderproduct");
 let Product = class Product extends sequelize_typescript_1.Model {
     constructor() {
         super(...arguments);
-        this.category = new category_1.Category;
+        this.category = new category_1.Category();
     }
 };
 exports.Product = Product;
@@ -25,7 +26,7 @@ __decorate([
 ], Product.prototype, "title", void 0);
 __decorate([
     (0, sequelize_typescript_1.Column)({
-        type: sequelize_typescript_1.DataType.STRING
+        type: sequelize_typescript_1.DataType.STRING,
     }),
     __metadata("design:type", String)
 ], Product.prototype, "description", void 0);
@@ -55,6 +56,10 @@ __decorate([
     __metadata("design:type", category_1.Category)
 ], Product.prototype, "category", void 0);
 __decorate([
+    (0, sequelize_typescript_1.BelongsToMany)(() => Product, () => orderproduct_1.OrderProduct),
+    __metadata("design:type", Array)
+], Product.prototype, "orders", void 0);
+__decorate([
     sequelize_typescript_1.CreatedAt,
     sequelize_typescript_1.Column,
     __metadata("design:type", Date)
@@ -66,6 +71,6 @@ __decorate([
 ], Product.prototype, "updatedAt", void 0);
 exports.Product = Product = __decorate([
     (0, sequelize_typescript_1.Table)({
-        tableName: "Products"
+        tableName: "Products",
     })
 ], Product);
