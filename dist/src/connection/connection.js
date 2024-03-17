@@ -15,8 +15,8 @@ const category_1 = require("../models/category");
 const connection = new sequelize_typescript_1.Sequelize({
     database: 'sisweb_db',
     dialect: 'postgres',
-    username: 'postgres', //'sisweb_user',
-    password: 'Lokomiko.00', //'HDK#$%Ljkwerff.89',
+    username: 'sisweb_user',
+    password: 'HDK#$%Ljkwerff.89',
     storage: ':memory:',
     models: [product_1.Product, category_1.Category]
 });
