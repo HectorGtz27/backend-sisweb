@@ -1,3 +1,4 @@
+// En order.ts
 import {
   Table,
   Model,
@@ -7,22 +8,17 @@ import {
   UpdatedAt,
   DataType,
 } from "sequelize-typescript";
-import {Optional } from "sequelize";
+import { Optional } from "sequelize";
 import { Product } from "./product";
 import { OrderProduct } from "./orderproduct";
 
-const paymentTypes = [
-    'credit_card',
-    'debit_card',
-    'bank_transfer'
-];
+const paymentTypes = ["credit_card", "debit_card", "bank_transfer"];
 
 interface OrderAttributes {
   id: number;
-  name:string,
+  name: string;
   shipedTo: string;
-  paymentType:string;
-  products: Product[];
+  paymentType: string;
 }
 
 interface OrderCreationAttributes extends Optional<OrderAttributes, "id"> {}
@@ -31,7 +27,6 @@ interface OrderCreationAttributes extends Optional<OrderAttributes, "id"> {}
   tableName: "Orders",
 })
 export class Order extends Model<OrderAttributes, OrderCreationAttributes> {
-
   @Column
   name!: string;
 
@@ -41,7 +36,7 @@ export class Order extends Model<OrderAttributes, OrderCreationAttributes> {
   @Column(DataType.ENUM({ values: paymentTypes }))
   paymentType!: string;
 
-  @BelongsToMany(() => Product, () => OrderProduct)
+  @BelongsToMany(() => Product, () => OrderProduct, "orderId", "productId")
   products!: Product[];
 
   @CreatedAt

@@ -10,14 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Product = void 0;
+// En product.ts
 const sequelize_typescript_1 = require("sequelize-typescript");
 const category_1 = require("./category");
 const orderproduct_1 = require("./orderproduct");
+const order_1 = require("./order");
 let Product = class Product extends sequelize_typescript_1.Model {
-    constructor() {
-        super(...arguments);
-        this.category = new category_1.Category();
-    }
 };
 exports.Product = Product;
 __decorate([
@@ -56,7 +54,7 @@ __decorate([
     __metadata("design:type", category_1.Category)
 ], Product.prototype, "category", void 0);
 __decorate([
-    (0, sequelize_typescript_1.BelongsToMany)(() => Product, () => orderproduct_1.OrderProduct),
+    (0, sequelize_typescript_1.BelongsToMany)(() => order_1.Order, () => orderproduct_1.OrderProduct, "productId", "orderId"),
     __metadata("design:type", Array)
 ], Product.prototype, "orders", void 0);
 __decorate([

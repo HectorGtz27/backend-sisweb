@@ -35,6 +35,6 @@ __decorate([
 ], Category.prototype, "updatedAt", void 0);
 exports.Category = Category = __decorate([
     (0, sequelize_typescript_1.Table)({
-        tableName: "Categories"
+        tableName: "Categories",
     })
 ], Category);

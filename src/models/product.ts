@@ -1,3 +1,4 @@
+// En product.ts
 import {
   Table,
   Model,
@@ -9,7 +10,7 @@ import {
   BelongsTo,
   BelongsToMany,
 } from "sequelize-typescript";
-import {  Optional } from "sequelize";
+import { Optional } from "sequelize";
 import { Category } from "./category";
 import { OrderProduct } from "./orderproduct";
 import { Order } from "./order";
@@ -23,7 +24,6 @@ interface ProductAttributes {
   rating: number;
   stock: number;
   categoryId: number;
-  category: Category;
 }
 
 interface ProductCreationAttributes extends Optional<ProductAttributes, "id"> {}
@@ -35,14 +35,9 @@ export class Product extends Model<
   ProductAttributes,
   ProductCreationAttributes
 > {
-
-  // Here, TS infers Data Type from the JS Type
-  // The ! means that the variable title wont be null or undefine.
   @Column
   title!: string;
 
-  // Here, we set the Data Type explicity
-  // The ? means the variable can be null or undefined
   @Column({
     type: DataType.STRING,
   })
@@ -65,9 +60,9 @@ export class Product extends Model<
   categoryId!: number;
 
   @BelongsTo(() => Category)
-  category: Category = new Category();
+  category!: Category;
 
-  @BelongsToMany(() => Product, () => OrderProduct)
+  @BelongsToMany(() => Order, () => OrderProduct, "productId", "orderId")
   orders!: Order[];
 
   @CreatedAt

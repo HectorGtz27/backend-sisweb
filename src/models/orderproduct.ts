@@ -19,7 +19,7 @@ interface OrderProductAttributes {
 @Table({
   tableName: "OrderProduct",
 })
-export class OrderProduct extends Model<OrderProductAttributes, "orderId|productId"> {
+export class OrderProduct extends Model<OrderProductAttributes> {
   @PrimaryKey
   @ForeignKey(() => Product)
   @Column
@@ -31,7 +31,7 @@ export class OrderProduct extends Model<OrderProductAttributes, "orderId|product
   orderId!: number;
 
   @Column
-  quantity?:number;
+  quantity?: number;
 
   @CreatedAt
   @Column
